@@ -1,5 +1,6 @@
 packages:
-  - .
-ignoredBuiltDependencies:
-  - sharp
-  - unrs-resolver
+  # 匹配所有子包目录，根据你的实际路径调整
+  - 'packages/*'
+  - 'apps/*'
+  # 排除不需要纳入工作区的目录（可选）
+  - '!**/node_modules'
