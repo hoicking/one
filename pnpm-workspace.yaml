@@ -1,6 +1,7 @@
 packages:
-  # 匹配所有子包目录，根据你的实际路径调整
+  # 匹配所有 packages 下的一层子包
   - 'packages/*'
-  - 'apps/*'
+  # 匹配 apps 下的所有多级子应用（包含 apps/h5/common_h5 这种结构）
+  - 'apps/**'
   # 排除不需要纳入工作区的目录（可选）
   - '!**/node_modules'

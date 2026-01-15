@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  # common_h5 服务
+  common-h5:
+    build:
+      context: .
+      dockerfile: apps/h5/common_h5/Dockerfile
+    image: common-h5:latest
+    container_name: common-h5
+    ports:
+      - "7998:7998"
+    environment:
+      - NODE_ENV=production
+      - PORT=7998
+      - HOSTNAME=0.0.0.0
+      # 环境变量通过 env_file 或环境特定 compose 文件加载
+      # 也可以在这里直接覆盖：
+      # - NEXT_PUBLIC_API_URL=https://api.example.com
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:7998"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    networks:
+      - app-network
+
+  # common_web 服务
+  common-web:
+    build:
+      context: .
+      dockerfile: apps/web/common_web/Dockerfile
+    image: common-web:latest
+    container_name: common-web
+    ports:
+      - "7999:7999"
+    environment:
+      - NODE_ENV=production
+      - PORT=7999
+      - HOSTNAME=0.0.0.0
+      # 环境变量通过 env_file 或环境特定 compose 文件加载
+      # 也可以在这里直接覆盖：
+      # - NEXT_PUBLIC_API_URL=https://api.example.com
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:7999"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
