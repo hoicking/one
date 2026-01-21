@@ -1,3 +1,5 @@
+import ApiDemo from '@/components/ApiDemo';
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50">
@@ -6,9 +8,11 @@ export default function Home() {
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             欢迎使用 H5 App
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-gray-600 mb-8">
             这是一个基于 Next.js 的移动端应用
           </p>
+          
+          <ApiDemo />
         </div>
       </div>
     </div>
