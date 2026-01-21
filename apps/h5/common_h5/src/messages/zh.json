@@ -1,0 +1,9 @@
+{
+  "greeting": "你好，{name}！",
+  "about": "关于我们",
+  "nav": {
+    "home": "首页",
+    "about": "关于",
+    "contact": "联系"
+  }
+}

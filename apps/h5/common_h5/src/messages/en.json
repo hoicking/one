@@ -1,0 +1,9 @@
+{
+  "greeting": "Hello, {name}!",
+  "about": "About Us",
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact"
+  }
+}

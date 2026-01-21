@@ -1,21 +1,18 @@
 'use client';
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-
-interface NavItem {
-  label: string;
-  href: string;
-}
-
-const navItems: NavItem[] = [
-  { label: '首页', href: '/' },
-  { label: '关于', href: '/about' },
-  { label: '联系', href: '/contact' },
-];
+import { Link, usePathname } from '@/i18n/routing';
+import { useTranslations } from 'next-intl';
+import LanguageSwitcher from './LanguageSwitcher';
 
 export default function Navigation() {
   const pathname = usePathname();
+  const t = useTranslations('nav');
+
+  const navItems = [
+    { label: t('home'), href: '/' },
+    { label: t('about'), href: '/about' },
+    { label: t('contact'), href: '/contact' },
+  ];
 
   return (
     <nav className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
@@ -29,23 +26,27 @@ export default function Navigation() {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex md:space-x-8">
-            {navItems.map((item) => {
-              const isActive = pathname === item.href;
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                    isActive
-                      ? 'text-blue-600 bg-blue-50'
-                      : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
+          <div className="hidden md:flex md:items-center md:space-x-8">
+            <div className="flex space-x-8">
+              {navItems.map((item) => {
+                const isActive = pathname === item.href;
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                      isActive
+                        ? 'text-blue-600 bg-blue-50'
+                        : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+            </div>
+            
+            <LanguageSwitcher />
           </div>
 
           {/* Mobile Menu Button */}
