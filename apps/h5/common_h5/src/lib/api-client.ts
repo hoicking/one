@@ -1,5 +1,6 @@
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || process.env.API_URL || '';
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
 
+console.log('wwwwwwwwww', process.env.NEXT_PUBLIC_API_URL)
 interface FetchOptions extends RequestInit {
   params?: Record<string, string>;
 }
@@ -14,6 +15,7 @@ class FetchClient {
   private async request<T>(url: string, options: FetchOptions = {}): Promise<T> {
     const { params, ...init } = options;
 
+    console.log('wwwwwaaaa', this.baseURL)
     let fullUrl = url.startsWith('http') ? url : `${this.baseURL}${url}`;
     
     if (params) {

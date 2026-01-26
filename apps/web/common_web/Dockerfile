@@ -45,7 +45,8 @@ COPY packages ./packages
 COPY apps/web/common_web ./apps/web/common_web
 
 # 设置环境变量
-ENV NODE_ENV=production
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
 ENV NEXT_TELEMETRY_DISABLED=1
 
 # 构建 common_web

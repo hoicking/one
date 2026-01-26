@@ -44,8 +44,15 @@ COPY packages ./packages
 # 只复制 common_h5 的源代码（不需要 common_web）
 COPY apps/h5/common_h5 ./apps/h5/common_h5
 
+ARG NODE_ENV
+RUN if [ "$NODE_ENV" = "test" ]; then \
+      cp apps/h5/common_h5/.env.test apps/h5/common_h5/.env.production.local; \
+    elif [ "$NODE_ENV" = "development" ]; then \
+      cp apps/h5/common_h5/.env.development apps/h5/common_h5/.env.production.local; \
+    elif [ "$NODE_ENV" = "production" ]; then \
+      cp apps/h5/common_h5/.env.production apps/h5/common_h5/.env.production.local; \
+    fi
 # 设置环境变量
-ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
 # 构建 common_h5
@@ -56,7 +63,6 @@ FROM node:20-alpine AS runner
 
 WORKDIR /app
 
-ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
 # 创建非 root 用户

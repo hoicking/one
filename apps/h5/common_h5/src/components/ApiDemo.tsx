@@ -31,7 +31,7 @@ export default function ApiDemo() {
       
       <div className="mb-4">
         <p className="text-sm text-gray-600 mb-2">
-          当前 API 地址: <code className="bg-gray-100 px-1 py-0.5 rounded">{process.env.API_URL || '未设置'}</code>
+          当前 API 地址: <code className="bg-gray-100 px-1 py-0.5 rounded">{process.env.NEXT_PUBLIC_API_URL || '未设置'}</code>
         </p>
         <button
           onClick={handleFetch}

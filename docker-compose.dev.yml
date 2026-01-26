@@ -6,16 +6,18 @@ services:
     build:
       context: .
       dockerfile: apps/h5/common_h5/Dockerfile
-    image: common-h5:latest
-    container_name: common-h5
+      args:
+        NODE_ENV: development
+    image: common-h5:dev
+    container_name: common-h5-dev
     ports:
       - "7998:7998"
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=development
       - PORT=7998
       - HOSTNAME=0.0.0.0
-      # 环境变量通过 env_file 或环境特定 compose 文件加载
-      # 也可以在这里直接覆盖：
+    env_file:
+      - ./apps/h5/common_h5/.env.development
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:7998"]
@@ -39,16 +41,18 @@ services:
     build:
       context: .
       dockerfile: apps/web/common_web/Dockerfile
-    image: common-web:latest
-    container_name: common-web
+      args:
+        NODE_ENV: development
+    image: common-web:dev
+    container_name: common-web-dev
     ports:
       - "7999:7999"
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=development
       - PORT=7999
       - HOSTNAME=0.0.0.0
-      # 环境变量通过 env_file 或环境特定 compose 文件加载
-      # 也可以在这里直接覆盖：
+    env_file:
+      - ./apps/web/common_web/.env.development
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:7999"]
