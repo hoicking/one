@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
-import { marked } from 'marked';
+import Markdown from '@/components/Markdown';
 
 export default function AIChatPage() {
   const t = useTranslations();
@@ -95,7 +95,7 @@ export default function AIChatPage() {
 
       const reader = response.body?.getReader();
       if (!reader) {
-        throw new Error('无法获取响应流');
+        throw new Error('无法获取响应流.');
       }
 
       const decoder = new TextDecoder();
@@ -154,25 +154,31 @@ export default function AIChatPage() {
         }
       }
 
-      // 处理 SSE 缓冲区
+      // 1. 修改处理逻辑
       function processSSEBuffer(buf: string) {
         const lines = buf.split('\n');
-        // 保留最后一行（可能是不完整的）
         buffer = lines.pop() || '';
         
         for (const line of lines) {
-          if (line.startsWith('data:')) {
-            // 提取 data: 后面的内容
-            const content = line.substring(5).trim();
-            if (content !== '') {
-              assistantContent += content + ' ';
-            }
-          } else if (line === '') {
-            // 空行表示一个事件结束，这里可以添加额外处理
+          const trimmedLine = line.trim();
+          if (!trimmedLine || !trimmedLine.startsWith('data:')) continue;
+
+          const rawData = trimmedLine.substring(5).trim();
+          if (rawData === '[DONE]') break;
+
+          try {
+            // 这里的解析逻辑取决于你后端的具体返回格式
+            // 如果后端直接返回字符串，则用 assistantContent += rawData
+            // 如果后端返回的是 JSON 字符串 (如 {"answer": "..."})，则需要 JSON.parse
+            const parsed = JSON.parse(rawData);
+            const delta = parsed.answer || parsed.delta?.content || ""; 
+            assistantContent += delta; // ❌ 不要加额外的空格
+          } catch (e) {
+            // 如果不是 JSON，尝试直接当作字符串处理（容错）
+            assistantContent += rawData;
           }
         }
       }
-
       // 完成后，用最终内容替换临时消息
       setMessages(prev => prev.map(msg => 
         msg.id === tempMessageId 
@@ -191,11 +197,6 @@ export default function AIChatPage() {
     }
   };
 
-  const renderMessageContent = (content: string) => {
-    return {
-      __html: marked.parse(content),
-    };
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950">
@@ -245,10 +246,12 @@ export default function AIChatPage() {
                     : 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-tl-none shadow-sm'
                     }`}
                 >
-                  <div
-                    className="prose dark:prose-invert prose-sm md:prose-base max-w-none break-words"
-                    dangerouslySetInnerHTML={renderMessageContent(message.content)}
-                  />
+                  <div className={` ... ${message.role === 'user' ? '...' : '...'}`}>
+                    <div className="prose dark:prose-invert prose-sm md:prose-base max-w-none break-words">
+                      {/* 直接传入字符串内容 */}
+                      <Markdown content={message.content} />
+                    </div>
+                  </div>
                 </div>
               </div>
             ))
