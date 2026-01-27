@@ -163,20 +163,20 @@ export default function AIChatPage() {
           const trimmedLine = line.trim();
           if (!trimmedLine || !trimmedLine.startsWith('data:')) continue;
 
-          const rawData = trimmedLine.substring(5).trim();
-          if (rawData === '[DONE]') break;
+          const rawData = trimmedLine.substring(5);
+          if (rawData.trim() === '[DONE]') break;
 
-          try {
-            // 这里的解析逻辑取决于你后端的具体返回格式
-            // 如果后端直接返回字符串，则用 assistantContent += rawData
-            // 如果后端返回的是 JSON 字符串 (如 {"answer": "..."})，则需要 JSON.parse
-            const parsed = JSON.parse(rawData);
-            const delta = parsed.answer || parsed.delta?.content || ""; 
-            assistantContent += delta; // ❌ 不要加额外的空格
-          } catch (e) {
-            // 如果不是 JSON，尝试直接当作字符串处理（容错）
-            assistantContent += rawData;
-          }
+          // 处理所有转义序列，确保Markdown语法正确解析
+          // 1. 首先将\n转换为实际的换行符
+          // 2. 处理其他可能的转义序列
+          let processedData = rawData
+            .replace(/\\n/g, '\n')
+            .replace(/\\t/g, '\t')
+            .replace(/\\"/g, '"')
+            .replace(/\\'/g, "'")
+            .replace(/\\\\/g, '\\');
+          
+          assistantContent += processedData;
         }
       }
       // 完成后，用最终内容替换临时消息
@@ -219,7 +219,7 @@ export default function AIChatPage() {
       {/* 消息区域 */}
       <main className="max-w-4xl mx-auto px-4 py-6 pb-32">
         <div 
-          className="space-y-6 max-h-[calc(100vh-280px)] md:max-h-[calc(100vh-300px)] overflow-y-auto pr-2"
+          className="space-y-5 max-h-[calc(100vh-280px)] md:max-h-[calc(100vh-300px)] overflow-y-auto pr-2"
           onScroll={handleScroll}
         >
           {messages.length === 0 ? (
@@ -238,15 +238,15 @@ export default function AIChatPage() {
             messages.map((message) => (
               <div
                 key={message.id}
-                className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} animate-fadeIn`}
               >
                 <div
-                  className={`max-w-[80%] sm:max-w-[70%] md:max-w-[65%] p-4 rounded-2xl ${message.role === 'user'
-                    ? 'bg-blue-600 text-white rounded-tr-none'
-                    : 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-tl-none shadow-sm'
-                    }`}
+                  className={`max-w-[80%] sm:max-w-[70%] md:max-w-[65%] p-5 rounded-2xl ${message.role === 'user'
+                    ? 'bg-blue-600 text-white rounded-tr-lg'
+                    : 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-tl-lg shadow-md'
+                    } transition-all duration-300 ease-out`}
                 >
-                  <div className={` ... ${message.role === 'user' ? '...' : '...'}`}>
+                  <div className={`${message.role === 'user' ? '' : ''}`}>
                     <div className="prose dark:prose-invert prose-sm md:prose-base max-w-none break-words">
                       {/* 直接传入字符串内容 */}
                       <Markdown content={message.content} />
@@ -261,7 +261,7 @@ export default function AIChatPage() {
       </main>
 
       {/* 输入区域 */}
-      <footer className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-t border-gray-200 dark:border-gray-800 shadow-md">
+      <footer className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-t border-gray-200 dark:border-gray-800 shadow-lg">
         <div className="max-w-4xl mx-auto px-4 py-4">
           <form onSubmit={handleSubmit} className="relative">
             <textarea
@@ -270,14 +270,14 @@ export default function AIChatPage() {
               onChange={handleInputChange}
               onKeyDown={handleKeyDown}
               placeholder="输入你的问题...\n\n提示：按 Enter 发送消息，按 Shift+Enter 换行"
-              className="w-full p-4 pr-20 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-all md:text-base min-h-[80px] resize-none"
+              className="w-full p-5 pr-24 rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-all md:text-base min-h-[90px] resize-none shadow-sm"
               disabled={loading}
               style={{ height: 'auto' }}
             />
             <button
               type="submit"
               disabled={loading || !input.trim()}
-              className="absolute right-2 bottom-2 p-2.5 rounded-full bg-blue-600 text-white hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors shadow-sm"
+              className="absolute right-3 bottom-3 p-3 rounded-full bg-blue-600 text-white hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-all shadow-md"
             >
               {loading ? (
                 <svg className="w-5 h-5 md:w-6 md:h-6 animate-spin" fill="none" viewBox="0 0 24 24">
