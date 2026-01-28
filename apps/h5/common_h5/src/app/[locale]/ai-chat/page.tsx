@@ -166,17 +166,29 @@ export default function AIChatPage() {
           const rawData = trimmedLine.substring(5);
           if (rawData.trim() === '[DONE]') break;
 
-          // 处理所有转义序列，确保Markdown语法正确解析
-          // 1. 首先将\n转换为实际的换行符
-          // 2. 处理其他可能的转义序列
-          let processedData = rawData
-            .replace(/\\n/g, '\n')
-            .replace(/\\t/g, '\t')
-            .replace(/\\"/g, '"')
-            .replace(/\\'/g, "'")
-            .replace(/\\\\/g, '\\');
-          
-          assistantContent += processedData;
+          try {
+            // 解析JSON响应
+            const parsedData = JSON.parse(rawData);
+            // 提取answer字段作为消息内容
+            if (parsedData.answer) {
+              assistantContent += parsedData.answer;
+            }
+            // 提取并更新conversationId
+            if (parsedData.conversationId) {
+              setConversationId(parsedData.conversationId);
+            }
+          } catch (error) {
+            console.error('解析响应数据失败:', error);
+            // 如果解析失败，尝试作为普通文本处理
+            const processedData = rawData
+              .replace(/\\n/g, '\n')
+              .replace(/\\t/g, '\t')
+              .replace(/\"/g, '"')
+              .replace(/\\'/g, "'")
+              .replace(/\\\\/g, '\\');
+            
+            assistantContent += processedData;
+          }
         }
       }
       // 完成后，用最终内容替换临时消息
