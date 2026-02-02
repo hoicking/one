@@ -5,7 +5,8 @@ import { useTranslations } from 'next-intl';
 import Markdown from '@/components/Markdown';
 
 export default function AIChatPage() {
-  const t = useTranslations();
+  const t = useTranslations('aiChat');
+  const commonT = useTranslations('common');
   const [messages, setMessages] = useState<Array<{
     id: string;
     role: 'user' | 'assistant';
@@ -215,7 +216,7 @@ export default function AIChatPage() {
       {/* 顶部导航 */}
       <header className="sticky top-0 z-10 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 shadow-sm">
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
-          <h1 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white">AI 对话</h1>
+          <h1 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white">{t('title')}</h1>
           <button
             onClick={() => {
               setMessages([]);
@@ -223,7 +224,7 @@ export default function AIChatPage() {
             }}
             className="text-sm md:text-base text-blue-600 dark:text-blue-400 hover:underline px-3 py-1 rounded-md hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors"
           >
-            新对话
+            {t('newChat')}
           </button>
         </div>
       </header>
@@ -240,10 +241,10 @@ export default function AIChatPage() {
                 <span className="text-blue-600 dark:text-blue-400 text-3xl md:text-4xl">🤖</span>
               </div>
               <h2 className="text-xl md:text-2xl font-semibold text-gray-900 dark:text-white mb-3">
-                你好！我是你的 AI 助手
+                {t('greeting')}
               </h2>
               <p className="text-gray-600 dark:text-gray-400 max-w-md md:max-w-lg text-base md:text-lg">
-                有什么我可以帮助你的吗？例如：&ldquo;PowerHill是什么&rdquo;、&ldquo;如何学习编程&rdquo;等问题。
+                {t('examples')}
               </p>
             </div>
           ) : (
@@ -281,7 +282,7 @@ export default function AIChatPage() {
               value={input}
               onChange={handleInputChange}
               onKeyDown={handleKeyDown}
-              placeholder="输入你的问题...\n\n提示：按 Enter 发送消息，按 Shift+Enter 换行"
+              placeholder={t('placeholder')}
               className="w-full p-5 pr-24 rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-all md:text-base min-h-[90px] resize-none shadow-sm"
               disabled={loading}
               style={{ height: 'auto' }}

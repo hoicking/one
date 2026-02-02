@@ -1,9 +1,215 @@
 {
-  "greeting": "Hello, {name}!",
-  "about": "About Us",
-  "nav": {
-    "home": "Home",
-    "about": "About",
-    "contact": "Contact"
+  "common": {
+    "greeting": "Hello, {name}!",
+    "nav": {
+      "home": "Home",
+      "termsOfUse": "Terms of Use",
+      "privacyPolicy": "Privacy Policy",
+      "aiChat": "AI Chat"
+    },
+    "cards": {
+      "aiChat": {
+        "button": "Start Chat"
+      },
+      "viewDetails": "View Details"
+    },
+    "buttons": {
+      "submit": "Submit",
+      "cancel": "Cancel",
+      "save": "Save",
+      "delete": "Delete"
+    },
+    "errors": {
+      "required": "This field is required",
+      "invalid": "Invalid input",
+      "network": "Network error"
+    },
+    "labels": {
+      "email": "Email",
+      "password": "Password",
+      "name": "Name",
+      "message": "Message"
+    }
+  },
+  "home": {
+    "title": "Welcome to Dunext",
+    "subtitle": "Your trusted partner for sustainable energy solutions",
+    "cards": {
+      "aiChat": {
+        "description": "Chat with our AI assistant to get instant answers and help. No matter what questions you have, our AI can provide support for you."
+      },
+      "termsOfUse": {
+        "description": "Understand our terms of use and service agreement to ensure your rights and responsibilities when using our platform."
+      },
+      "privacyPolicy": {
+        "description": "Understand how we collect, use, disclose, and protect your personal information to ensure your privacy is secure."
+      }
+    }
+  },
+  "termsOfUse": {
+    "title": "Terms of Use",
+    "lastUpdated": "Last Updated: Nov 15, 2025",
+    "introduction": "These Terms of Use (the \"Terms\") govern your access to and use of the website, products, and services provided by Dunext Technology Suzhou Co., Ltd. (\"Dunext\", \"we\", \"us\", or \"our\"). By accessing or using our website, products, or services, you agree to be bound by these Terms. If you do not agree to these Terms, you may not access or use our website, products, or services.",
+    "notice": {
+      "title": "Notice",
+      "content": "Please read these Terms carefully before using our website, products, or services. These Terms constitute a legally binding agreement between you and Dunext. By accessing or using our website, products, or services, you acknowledge that you have read, understood, and agree to be bound by these Terms."
+    },
+    "usageRules": {
+      "title": "Usage Rules",
+      "account": {
+        "title": "Account Registration and Management",
+        "content1": "To access certain features of our website or services, you may be required to create an account. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.",
+        "content2": "You agree to notify us immediately of any unauthorized access to or use of your account. We reserve the right to suspend or terminate your account at any time for any reason, including if we believe you have violated these Terms."
+      },
+      "restrictions": {
+        "title": "Restrictions on Use",
+        "content1": "You agree not to use our website, products, or services for any unlawful purpose or in any way that could damage, disable, overburden, or impair our systems or interfere with the use of our website, products, or services by others.",
+        "content2": "You may not use any automated system or software to extract data from our website without our prior written permission.",
+        "content3": "You may not attempt to gain unauthorized access to any part of our website, products, or services, or to any other systems or networks connected to our website.",
+        "content4": "You may not distribute viruses, malware, or other harmful code through our website, products, or services.",
+        "content5": "You may not use our website, products, or services to侵犯 the intellectual property rights of others.",
+        "content6": "You may not use our website, products, or services to engage in any activity that violates applicable laws or regulations."
+      }
+    },
+    "obligations": {
+      "title": "Obligations of Both Parties",
+      "dunext": {
+        "title": "Dunext's Obligations",
+        "content1": "Dunext shall provide the website, products, and services in accordance with these Terms and applicable laws and regulations.",
+        "content2": "Dunext shall take reasonable measures to protect the security of your account and personal information in accordance with our Privacy Policy."
+      },
+      "user": {
+        "title": "User's Obligations",
+        "content1": "You shall comply with these Terms and all applicable laws and regulations when using our website, products, or services.",
+        "content2": "You shall provide accurate and complete information when registering an account or using our services.",
+        "content3": "You shall maintain the confidentiality of your account credentials and notify us immediately of any unauthorized use of your account.",
+        "content4": "You shall not use our website, products, or services for any unlawful or prohibited purpose."
+      }
+    },
+    "rights": {
+      "title": "Rights of Both Parties",
+      "dunext": "Dunext reserves the right to modify, suspend, or terminate any part of our website, products, or services at any time for any reason without prior notice. Dunext reserves the right to remove any content that violates these Terms or applicable laws and regulations.",
+      "user": "You have the right to access and use our website, products, and services in accordance with these Terms. You have the right to terminate your account at any time by contacting us."
+    },
+    "disclaimer": {
+      "title": "Disclaimer",
+      "content1": "To the maximum extent permitted by applicable law, Dunext shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising out of or in connection with your access to or use of our website, products, or services.",
+      "content2": "Dunext does not warrant that our website, products, or services will be error-free, uninterrupted, or secure, or that any defects will be corrected.",
+      "content3": "The content on our website is provided for general information purposes only and should not be relied upon as professional advice."
+    },
+    "changes": {
+      "title": "Changes to Terms",
+      "content1": "Dunext may modify these Terms from time to time. When we make changes to these Terms, we will update the \"Last Updated\" date at the top of this page.",
+      "content2": "Your continued access to or use of our website, products, or services after the posting of revised Terms constitutes your acceptance of those changes."
+    },
+    "dispute": {
+      "title": "Dispute Resolution",
+      "content": "Any dispute arising out of or in connection with these Terms shall be resolved through friendly negotiations. If negotiations fail, the dispute shall be submitted to the people's court having jurisdiction over the place where Dunext is located."
+    }
+  },
+  "aiChat": {
+    "title": "AI Chat",
+    "greeting": "Hello! I'm your AI assistant",
+    "placeholder": "Enter your question...\n\nTip: Press Enter to send a message, press Shift+Enter to create a new line",
+    "examples": "How can I help you today? For example: \"What is PowerHill?\" or \"How to learn programming?\"",
+    "newChat": "New Chat"
+  },
+  "privacyPolicy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last Updated: Nov 15, 2025",
+    "intro1": "Dunext Technology Suzhou Co., Ltd. (also referred to as \"Dunext\", \"we\", \"us\" or \"our\") respect your privacy, and is committed to protecting your personal information. This Privacy Policy describes how we collect, use, disclose, and protect your information, but it may not address all possible data processing scenarios. Dunext may notify you of specific data collection for certain products or services through supplementary policies or notices provided before data collection.",
+    "intro2": "Please read this Privacy Policy carefully before using this website. This Policy applies to the Dunext website, products, and services that display or provide a link to this Policy.",
+    "tableOfContents": "This Policy includes:",
+    "section1": {
+      "title": "Personal Data Collection and Use",
+      "subsection1": "Sources of Information Collection",
+      "subsection2": "Purpose of Using Personal Data",
+      "subsection3": "Data Retention and Usage Period",
+      "content1": "Personal data refers to any information that can be used to identify an individual, either alone or in combination with other data. By using Dunext products or services, you may be required to provide personal data. This personal data may vary depending on the specific product or service. In some cases, you may choose not to disclose your personal data to Dunext. However, not providing certain data may mean that we cannot provide certain products or services, or respond to your inquiries. Dunext will only use your personal data for the purposes stated in this policy.",
+      "dataCollectionMethods": "We may collect your personal data in the following ways:",
+      "userProvided": "Information you provide:",
+      "userProvidedContent": "When you register on this website, fill out forms, subscribe to newsletters, participate in surveys, or directly contact us, you may provide personal information such as your username, email address, phone number, mailing address, etc.",
+      "automaticallyCollected": "Automatically collected information:",
+      "automaticallyCollectedContent": "We may automatically collect information related to your device and usage behavior through technical means, including but not limited to IP address, browser type, operating system, device type, access time, pages visited, links clicked, etc. This information helps us understand how the website is used and optimize the user experience.",
+      "thirdPartyData": "Third-party data:",
+      "thirdPartyDataContent": "In some cases, we may obtain your information from third-party partners or service providers. These third parties may share certain information with us based on your interactions with them (such as purchases, subscriptions, social media activities, etc.).",
+      "dataUsagePurposes": "We collect your personal data primarily for the following purposes:",
+      "providingServices": "Providing services:",
+      "providingServicesContent": "We use your personal information to provide the products or services you request, process your orders or transactions, ensure service quality, and provide customer support.",
+      "marketing": "Marketing and communication:",
+      "marketingContent": "If you agree to receive marketing communications, we may use your email address or other contact details to send you information about our products, services, promotions, and updates.",
+      "improvingServices": "Improving services:",
+      "improvingServicesContent": "By analyzing your interactions with our website, we can improve our content, features, and services to enhance the user experience.",
+      "security": "Security and fraud prevention:",
+      "securityContent": "We use your personal data to protect the security of your account, prevent fraud, and ensure the normal operation of this website.",
+      "legalCompliance": "Legal compliance:",
+      "legalComplianceContent": "We may need to use your personal data to comply with applicable laws and regulations, handle any legal responsibilities or disputes.",
+      "dataRetentionContent": "We will retain your personal data only for the time necessary to fulfill the collection purposes. The specific duration depends on the purpose for which the data is used and applicable legal requirements. Once your personal data is no longer needed, we will take reasonable measures to ensure its deletion."
+    },
+    "section2": {
+      "title": "Cookies & Similar Technologies",
+      "content1": "We use cookies and similar technologies to collect and store information about how you use this website. Cookies are small files stored on your device, usually generated automatically by the browser you use. They help us improve website performance, provide a more personalized user experience, and analyze your behavior during visits.",
+      "content2": "Cookies and similar technologies are essential tools we use to offer a personalized experience, optimize website performance, perform data analysis, and ensure website security. We collect and use this information with your consent or based on the needs of the website's operation. If you wish to control or disable cookies, you can do so through your browser settings. However, please note that disabling certain cookies may affect your ability to access and use our website."
+    },
+    "section3": {
+      "title": "Personal Data Disclosure",
+      "content1": "We may share your personal data with third-party service providers to help us provide, operate, or improve our services. Before sharing, we will inform you of the third-party service providers' name, contact information, purpose, processing method, and types of personal information shared, and obtain your consent. For example, when you request installation and maintenance services, we may share your personal data with authorized installation personnel to deliver the service.",
+      "content2": "To comply with applicable laws or respond to valid legal processes, Dunext may also disclose your personal data to law enforcement or other government authorities. If Dunext is involved in a reorganization, merger, acquisition, or bankruptcy/liquidation proceedings in a specific jurisdiction, your personal data may be disclosed as part of the transaction. Dunext may also disclose your data when necessary, such as to enforce terms and conditions, when disclosure is deemed necessary to prevent personal injury or financial loss, or during investigations related to suspected or actual illegal activities."
+    },
+    "section4": {
+      "title": "Personal Data Access and Control",
+      "content1": "Dunext is committed to maintaining the accuracy and integrity of personal data and ensuring it remains up-to-date. In addition, you have the following rights to protect your personal data:",
+      "right1": "Access to your personal data",
+      "right2": "Request to modify or update your personal data",
+      "right3": "Request to delete your personal data",
+      "right4": "Object to or limit the processing of your personal data",
+      "right5": "Withdraw your consent for processing your personal data",
+      "content2": "If you wish to exercise any of the above rights, please contact us using the \"Contact Us\" section below.",
+      "content3": "If applicable law permits, when Dunext processes your personal data based on your consent, you have the right to withdraw your consent at any time. However, withdrawal will not affect the legality and validity of the data processing based on your consent before it was withdrawn, nor will it affect any data processing based on grounds other than consent.",
+      "content4": "If you believe that our processing of your personal data does not comply with applicable data protection laws, you can contact the relevant data protection authority."
+    },
+    "section5": {
+      "title": "Personal Data Protection",
+      "content1": "We take your personal data security seriously and have implemented various technical and administrative measures to ensure that your data is fully protected during storage, transmission, and usage. We use encryption technology to maintain data confidentiality, use protective mechanisms to prevent attacks, and access control mechanisms to ensure that only authorized personnel can access your personal data. We regularly train our staff on privacy and security to ensure they understand and comply with relevant data protection laws and the company's internal privacy policies. We will retain your personal data no longer than the period necessary to fulfill the purposes outlined in this policy, unless required or permitted by law to extend the retention period. The data retention period may vary depending on the context, product, and service."
+    },
+    "section6": {
+      "title": "Children's Personal Data Processing",
+      "content1": "Our website, products, and services are designed for adults and are intended for use by individuals who meet the legal age requirements. We do not provide services to minors and do not proactively collect personal data from minors. We request that all users avoid providing any data related to minors. If we accidentally collect personal data of children, we will delete this information."
+    },
+    "section7": {
+      "title": "International Transfers of Personal Data",
+      "content1": "Due to our global operations, the personal information we collect under this policy may be transferred, stored, and processed across different countries or regions. The laws and regulations of the country or region where we operate may differ from those of your country/region of residence, and we will comply strictly with the laws and regulations related to personal information protection. Therefore, within the framework of personal information protection, we may transfer personal information to the countries or regions where we conduct business in order to facilitate our business. Regardless of where your information is stored, our privacy and security practices aim at providing global protection for your personal information."
+    },
+    "section8": {
+      "title": "Policy Updates",
+      "content1": "We may periodically update this Privacy Policy. When we make significant updates to this policy, we may notify you via email or other appropriate means. The updated Privacy Policy will take effect as of the date it is published, unless otherwise stated."
+    },
+    "section9": {
+      "title": "Contact Us",
+      "content1": "If you have any questions, feedback, complaints, or suggestions, please contact us by sending an email to info@dunext.com."
+    },
+    "dataList": {
+      "categoryHeader": "Data Category",
+      "descriptionHeader": "Description",
+      "purposeHeader": "Purpose",
+      "category1": "Contact information",
+      "description1": "Email address, country, company name, address",
+      "purpose1": "To communicate with you, process your requests, offer after-sales service, reset passwords, delete accounts, bind warranties, create accounts, and with your consent, send you product, service, and marketing information.",
+      "category2": "Account information",
+      "description2": "Username, password",
+      "purpose2": "To log in, reset passwords, and change usernames.",
+      "category3": "Network activity information",
+      "description3": "Your device model, browser type, operating system, IP address, cookies",
+      "purpose3": "To improve user experience and optimize website and app performance.",
+      "category4": "Device information",
+      "description4": "Device GPS coordinates (location), language, camera photos, album",
+      "purpose4": "To create power stations based on user map location, retrieve weather information, set the app language, and edit power stations and personal avatars.",
+      "category5": "Device logs",
+      "description5": "Server access time, device information (type, SN)",
+      "purpose5": "To ensure products and services function properly and troubleshoot issues.",
+      "category6": "Currency type",
+      "description6": "Local currency type",
+      "purpose6": "To display economic benefits in the client software."
+    }
   }
 }
